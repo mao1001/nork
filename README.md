@@ -16,7 +16,7 @@ The below questions should be answered (in detail!) regarding your submission!
 > Answer goes here!
 
 
-##### 4. Approximately how many hours did it take you to complete this challenge? #####
+##### 4. Approximately how many hours did it take you to complete this assignment? #####
 > Answer goes here!
 
 
@@ -24,5 +24,5 @@ The below questions should be answered (in detail!) regarding your submission!
 > Answer goes here!
 
 
-##### 6. Did you encounter any problems in this challenge we should warn students about in the future? How can we make the challenge better? #####
+##### 6. Did you encounter any problems in this assignment we should warn students about in the future? How can we make the assignment better? #####
 > Answer goes here!
