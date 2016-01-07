@@ -1,0 +1,20 @@
+{
+  "name": "beginnings",
+  "version": "1.0.0",
+  "description": "A text-based adventure game",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://Garmega@github.com/Garmega/nork.git"
+  },
+  "author": "Chennan Nicholas Mao",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Garmega/nork/issues"
+  },
+  "homepage": "https://github.com/Garmega/nork#readme"
+}
