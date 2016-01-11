@@ -1,0 +1,16 @@
+{
+  "items": [
+    {
+      "id": "sword",
+      "description": "A sword of terrible destruction."
+    },
+    {
+      "id": "staff",
+      "description": "A staff of wonder and ruin."
+    },
+        {
+      "id": "sheild",
+      "description": "A shield to repel all."
+    }
+  ]
+}
