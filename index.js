@@ -1,6 +1,7 @@
 /* global process */
 'use strict';
 var readline = require('readline');
+var world = require('./world.json');
 
 console.log("You are falling in a dream, a black abyss surrounds you but your lethargic alertness masks you from the strangeness of the experience. A colorful mosaic platform in the distance rushes toward you as an invisible force uprights you and lands you gently on your feet.")
 console.log("Awake now, you look around, other than the platform you stand on, there is nothing but black in all directions, however the light seems to be perfectly illuminated in this setting")
@@ -30,20 +31,17 @@ var io = readline.createInterface({
   output: process.stdout
 });
 
-io.question('You strength is represented by a?', function(answer) {
+io.question('You strength is represented by a? ', function(answer) {
+    var description = ''
 	if (answer === "SWORD") {
-        console.log("The power of the warrior.")
-        console.log("Invincible courage.")
-        console.log("A sword of terrible destruction.")
+        description = world.items[0].description;
     } else if (answer === "SHIELD") {
-        console.log("The power of the guardian.")
-        console.log("Kindness to aid friends.")
-        console.log("A shield to repel all.")
+        description = world.items[1].description;
     } else if (answer === "STAFF") {
-        console.log("The power of the mystic.")
-        console.log("Inner strength.")
-        console.log("A staff of wonder and ruin.")
+        description = world.items[2].description;
     }
+    
+    console.log(description)
 	io.close(); //close the whole interface once completely done asking questions
 });
 

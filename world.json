@@ -14,5 +14,20 @@
         "south": "room1"
       } 
     }
+  ],
+  
+  "items": [
+    {
+      "id": "sword",
+      "description": "The power of the warrior. Invincible courage. A sword of terrible destruction."
+    },
+    {
+      "id": "staff",
+      "description": "The power of the mystic. Inner strength. A staff of wonder and ruin."
+    },
+        {
+      "id": "shield",
+      "description": "The power of the guardian. Kindess to aid friends. A shield to repel all."
+    }
   ]
 }
