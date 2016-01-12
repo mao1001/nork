@@ -7,35 +7,6 @@ var io = readline.createInterface({
 });
 
 module.exports = {    
-    // executeCommand :
-    // function executeCommand(prompt, successCallback) {
-    //     io.question(prompt, function(command) {  
-    //         var commandArray = command.trim().split(" ");
-    //         if (commandArray.length === 2) {
-    //             var action = commandArray[0];
-    //             var validityIndex = acceptableCommands.indexOf(action)
-                      
-    //             if (validityIndex === -1) {
-    //                 executeCommand(prompt, successCallback);
-    //             } else if (validityIndex === 0) {
-    //                 commands.executeGo();
-    //                 io.close();
-    //             } else if (validityIndex === 1) {
-    //                 commands.executeTake();
-    //                 io.close();
-    //             } else if (validityIndex === 2) {
-    //                 commands.executeInventory();
-    //                 io.close(); 
-    //             } else if (validityIndex === 3) {
-    //                 commands.executeUse();
-    //                 io.close();
-    //             }
-                
-    //         } else {
-    //             executeCommand(prompt, successCallback);
-    //         }
-    //     });
-    // },
     
     prompt :
     function prompt(prompt, acceptableAnswers, successCallback) {
@@ -50,8 +21,8 @@ module.exports = {
         });
     },
     
-    executeCommand2 :
-    function executeCommand2(prompt, acceptableActions, acceptableNouns, successCallback) {
+    executeCommand :
+    function executeCommand(prompt, acceptableActions, acceptableNouns, successCallback) {
         io.question(prompt, function(answer) {
             var commands = answer.trim().split(" ");
             
@@ -60,7 +31,7 @@ module.exports = {
                 var noun = commands[1];
                 
                 if (acceptableActions.indexOf(action) === -1 || acceptableNouns.indexOf(noun) === -1) {
-                    executeCommand2(prompt, acceptableActions, acceptableNouns, successCallback);
+                    executeCommand(prompt, acceptableActions, acceptableNouns, successCallback);
                 } else {
                     successCallback(action, noun);
                     io.close();
