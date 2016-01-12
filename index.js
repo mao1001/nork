@@ -32,8 +32,8 @@ console.log();
 
 
 questionEngine.executeCommand(
-    'TAKE that which represents your strength ',
-    ["TAKE"],
+    'TAKE that which represents your strength. ',
+    "TAKE",
     ["SWORD", "SHIELD", "STAFF"],
     function(action, noun) {
         commands.executeTake(player, world, noun);
