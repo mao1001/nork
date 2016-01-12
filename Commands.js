@@ -1,5 +1,4 @@
 'user strict'
-var readline = require('readline');
 var validCommands = ["GO", "TAKE", "USE", "INVENTORY"];
 
 function executeGo() {
@@ -73,12 +72,12 @@ module.exports = {
                         } else {
                             console.log("That is not a item you can take.");
                             console.log();
-                            executeCommand(player, world, prompt, acceptableNouns, successCallback);
+                            executeCommand(io, player, world, prompt, acceptableNouns, successCallback);
                         }
                     } else {
                         console.log("You didn't specify something to take.");
                         console.log();
-                        executeCommand(player, world, prompt, acceptableNouns, successCallback);
+                        executeCommand(io, player, world, prompt, acceptableNouns, successCallback);
                     }
                     //
                 } else if (command === "USE") {
@@ -96,7 +95,7 @@ module.exports = {
                     } else {
                         console.log("The command INVENTORY is not an action. Enter INVENTORY by itself to check your INVENTORY.")
                         console.log();
-                        executeCommand(player, world, prompt, acceptableNouns, successCallback);
+                        executeCommand(io, player, world, prompt, acceptableNouns, successCallback);
                     }
                     //
                 }
@@ -104,7 +103,7 @@ module.exports = {
             } else {
                 console.log("This is not a valid command."); 
                 console.log()
-                executeCommand(player, world, prompt, acceptableNouns, successCallback);               
+                executeCommand(io, player, world, prompt, acceptableNouns, successCallback);               
             }
             
         });
