@@ -1,34 +1,24 @@
 'user strict'
 
-var validCommands = ["GO", "TAKE", "USE", "INVENTORY"]
 
-function executeCommand(command, successCallBack, failCallBack) {
-    var commandIndex = validCommands.indexOf(command);
-    if (commandIndex != -1) {
-        failCallBack()
-    } else if (commandIndex == 0) {
-        executeGo()
-    } else if (commandIndex == 1) {
-        executeTake()
-    } else if (commandIndex == 2) {
-        executeUser()
-    } else if (commandIndex == 3) {
-        executeInventory()
+module.exports = {
+    executeGo :
+    function executeGo() {
+        console.log("GOING PLACES")
+    },
+    
+    executeTake :
+    function executeTake() {
+        console.log("TAKING THINGS")
+    },
+    
+    executeUse :
+    function executeUse() {
+        console.log("USING THINGS")
+    },
+    
+    executeInventory :
+    function executeInventory() {
+        console.log("HAMMER SPACE")
     }
-}
-
-function executeGo() {
-    
-}
-
-function executeTake() {
-    
-}
-
-function executeUser() {
-    
-}
-
-function executeInventory() {
-    
 }

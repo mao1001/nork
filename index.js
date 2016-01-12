@@ -4,6 +4,8 @@ var questionEngine = require('./questionEngine.js');
 var world = require('./world.json');
 var player = require('./player.json');
 
+console.log(Object.keys(questionEngine));
+
 console.log("You are falling in a dream, a black abyss surrounds you but your lethargic alertness masks you from the strangeness of the experience. A colorful mosaic platform in the distance rushes toward you as an invisible force uprights you and lands you gently on your feet.");
 console.log("Awake now, you look around, other than the platform you stand on, there is nothing but black in all directions, however the light seems to be perfectly illuminated in this setting");
 console.log();
@@ -27,22 +29,24 @@ console.log("A third light on your right shines and fades. This time a SWORD res
 console.log("\"It will give you strength\"");
 console.log();
 
-questionEngine.askQuestion(
-    'TAKE that which represents your strength ', 
-    ["SWORD", "SHIELD", "STAFF"],
-    function(answer) {
-        var description = '';
-        var itemChoice;
-        if (answer === "SWORD") {
-            itemChoice = world.items[0];
-        } else if (answer === "SHIELD") {
-            itemChoice = world.items[1];
-        } else if (answer === "STAFF") {
-            itemChoice = world.items[2];
-        }
+questionEngine.executeCommand("What are you going to take?");
+
+// questionEngine.prompt(
+//     'TAKE that which represents your strength ', 
+//     ["SWORD", "SHIELD", "STAFF"],
+//     function(answer) {
+//         var description = '';
+//         var itemChoice;
+//         if (answer === "SWORD") {
+//             itemChoice = world.items[0];
+//         } else if (answer === "SHIELD") {
+//             itemChoice = world.items[1];
+//         } else if (answer === "STAFF") {
+//             itemChoice = world.items[2];
+//         }
         
-        description = itemChoice.description;
-        player.inventory.push(itemChoice)
-        console.log(description);
-    }
-);
+//         description = itemChoice.description;
+//         player.inventory.push(itemChoice)
+//         console.log(description);
+//     } 
+// );
