@@ -1,11 +1,6 @@
 'user strict'
 var readline = require('readline');
 var validCommands = ["GO", "TAKE", "USE", "INVENTORY"];
-var io = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
-
 
 function executeGo() {
     console.log("GOING PLACES")
@@ -19,7 +14,6 @@ function executeTake(player, world, noun) {
             itemChoice = world.items[i];
             console.log("You acquired : " + itemChoice.id);
             console.log(itemChoice.description);
-            player.inventory.push(itemChoice)
         }
     }
     
@@ -51,7 +45,7 @@ function executeInventory(player) {
 
 module.exports = {
     executeCommand :
-    function executeCommand(player, world, prompt, acceptableNouns, successCallback) {
+    function executeCommand(io, player, world, prompt, acceptableNouns, successCallback) {
         io.question(prompt, function(answer) {
             var response = answer.trim().toUpperCase().split(" ");
             // console.log("---This is the response I got: " + response)
@@ -66,7 +60,7 @@ module.exports = {
                     //
                     executeGo();
                     successCallback();
-                    io.close();
+                    //io.close();
                     //
                 } else if (command === "TAKE") {
                     //
@@ -75,7 +69,7 @@ module.exports = {
                         if (acceptableNouns.indexOf(itemRequested) != -1) {
                             executeTake(player, world, itemRequested);
                             successCallback();
-                            io.close();
+                            //io.close();
                         } else {
                             console.log("That is not a item you can take.");
                             console.log();
@@ -91,14 +85,14 @@ module.exports = {
                     //
                     executeUse();
                     successCallback();
-                    io.close();
+                    //io.close();
                     //
                 } else if (command === "INVENTORY") {
                     //
                     if (response.length === 1) {
-                        executeInventory();
+                        executeInventory(player);
                         successCallback();
-                        io.close();
+                        //io.close();
                     } else {
                         console.log("The command INVENTORY is not an action. Enter INVENTORY by itself to check your INVENTORY.")
                         console.log();
