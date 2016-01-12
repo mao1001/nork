@@ -33,23 +33,16 @@ console.log("A third light on your right shines and fades. This time a SWORD res
 console.log("\"It will give you strength\"");
 console.log();
 
-commands.executeCommand(
-    io,
-    player,
-    world,
-    'TAKE that which represents your strength. ',
-    ["SWORD", "SHIELD", "STAFF"],
-    function() {
-        commands.executeCommand(
-            io,
-            player,
-            world,
-            'What do you want to do? ',
-            [],
-            function() {
-                io.close();
-            }
-        );  
-    }    
-);
+commands.executeCommand(io, player, world, 'TAKE that which represents your strength. ', ["SWORD", "SHIELD", "STAFF"], function() {
+    console.log()
+    console.log("\"You've gained the powerto fight.\"");
+    console.log("\"There will be times you have to fight.\"");
+    console.log("\"Keep your light burning strong\"");
+    console.log()
+    console.log("A door materializes in front of you. It's arms openg slowly as an inviting warm light eminates from the inside.")
+    commands.executeCommand(io, player, world, 'What do you want to do? ', [], function() {
+            commands.executeCommand(io, player, world
+            )
+    });     
+});
 
