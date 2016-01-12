@@ -1,8 +1,9 @@
 'user strict'
 var validCommands = ["GO", "TAKE", "USE", "INVENTORY"];
+var validDirections = ["NORTH", "EAST", "SOUTH", "WEST"];
 
 function executeGo() {
-    console.log("GOING PLACES")
+    
 }
 
 function executeTake(player, world, noun) {
@@ -57,9 +58,25 @@ module.exports = {
                 // console.log("---This is the command i'm attempting: " + command);
                 if (command === "GO") {
                     //
-                    executeGo();
+                    if (response.length === 2) {
+                        var direction = response[1].toUpperCase();
+                        
+                        if (validDirections.indexOf(direction) != -1) {
+                            if (acceptableNouns.indexOf(direction) != -1) {
+                                console.log("You head " + direction);
+                                executeGo();
+                            } else {
+                                console.log("You cannot go in that direction");
+                                console.log();
+                                executeCommand(io, player, world, prompt, acceptableNouns, successCallback);
+                            }
+                        } else {
+                            console.log("That is not a valid direction");
+                            console.log();
+                            executeCommand(io, player, world, prompt, acceptableNouns, successCallback);
+                        }
+                    }
                     successCallback();
-                    //io.close();
                     //
                 } else if (command === "TAKE") {
                     //
@@ -68,7 +85,6 @@ module.exports = {
                         if (acceptableNouns.indexOf(itemRequested) != -1) {
                             executeTake(player, world, itemRequested);
                             successCallback();
-                            //io.close();
                         } else {
                             console.log("That is not a item you can take.");
                             console.log();
@@ -84,14 +100,12 @@ module.exports = {
                     //
                     executeUse();
                     successCallback();
-                    //io.close();
                     //
                 } else if (command === "INVENTORY") {
                     //
                     if (response.length === 1) {
                         executeInventory(player);
                         executeCommand(io, player, world, prompt, acceptableNouns, successCallback);
-                        //io.close();
                     } else {
                         console.log("The command INVENTORY is not an action. Enter INVENTORY by itself to check your INVENTORY.")
                         console.log();
