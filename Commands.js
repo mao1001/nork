@@ -15,7 +15,7 @@ module.exports = {
             if (world.items[i].id.toUpperCase() === noun) {
                 itemChoice = world.items[i];
                 console.log();
-                console.log("You acquired : " + itemChoice.id.toUpperCase());
+                console.log("You acquired : " + itemChoice.id);
                 console.log(itemChoice.description);
                 player.inventory.push(itemChoice)
             }

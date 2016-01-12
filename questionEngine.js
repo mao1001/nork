@@ -15,7 +15,7 @@ module.exports = {
                 prompt(prompt, acceptableAnswers, successCallback);
                 
             } else {
-                successCallback(answer)
+                successCallback(answer);
                 io.close(); 
             }
         });
@@ -24,7 +24,7 @@ module.exports = {
     executeCommand :
     function executeCommand(prompt, acceptableActions, acceptableNouns, successCallback) {
         io.question(prompt, function(answer) {
-            var commands = answer.trim().split(" ");
+            var commands = answer.trim().toUpperCase().split(" ");
             
             if (commands.length === 2) {
                 var action = commands[0];
