@@ -90,7 +90,7 @@ module.exports = {
                     //
                     if (response.length === 1) {
                         executeInventory(player);
-                        successCallback();
+                        executeCommand(io, player, world, prompt, acceptableNouns, successCallback);
                         //io.close();
                     } else {
                         console.log("The command INVENTORY is not an action. Enter INVENTORY by itself to check your INVENTORY.")
