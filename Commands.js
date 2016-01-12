@@ -8,8 +8,8 @@ module.exports = {
     },
     
     executeTake :
-    function executeTake() {
-        console.log("TAKING THINGS")
+    function executeTake(player, world, item) {
+        player.inventory.push(item);
     },
     
     executeUse :

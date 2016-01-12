@@ -1,6 +1,7 @@
 /* global process */
 'use strict';
 var questionEngine = require('./questionEngine.js');
+var commands = require('./Commands.js');
 var world = require('./world.json');
 var player = require('./player.json');
 
@@ -29,7 +30,29 @@ console.log("A third light on your right shines and fades. This time a SWORD res
 console.log("\"It will give you strength\"");
 console.log();
 
-questionEngine.executeCommand("What are you going to take?");
+var array = ["SWORD", "SHIELD", "STAFF"];
+
+questionEngine.executeCommand2(
+    'TAKE that which represents your strength ',
+    ["TAKE"],
+    array,
+    function(action, noun) {
+        var description = '';
+        var itemChoice;
+        
+        for (var i = 0; i < world.items.length; i++) {
+            if (world.items[i].id.toUpperCase() === noun) {
+                itemChoice = world.items[i];
+                console.log(itemChoice);
+                description = itemChoice.description;
+            }
+        }
+        
+        description = itemChoice.description;
+        player.inventory.push(itemChoice)
+        console.log(description);
+    }    
+);
 
 // questionEngine.prompt(
 //     'TAKE that which represents your strength ', 
