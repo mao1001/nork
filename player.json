@@ -1,6 +1,12 @@
 {
-    "information": [
-
+    "location": [
+        {
+            "id": "Awakening",
+            "description": "A place where inner power is awoken.",
+            "exits": {
+                "north": "Battleground"
+            }   
+        }
     ],
     
     "inventory": [

@@ -1,33 +1,48 @@
 {
-  "rooms": [
-    {
-      "id": "room1",
-      "description": "The first room. The second room is north.",
-      "exits": {
-        "north": "room2"
-      }
-    },
-    {
-      "id": "room2",
-      "description": "The second room. The first room is south.",
-      "exits": {
-        "south": "room1"
-      } 
-    }
-  ],
-  
-  "items": [
-    {
-      "id": "Sword",
-      "description": "The power of the warrior. Invincible courage. A sword of terrible destruction."
-    },
-    {
-      "id": "Staff",
-      "description": "The power of the mystic. Inner strength. A staff of wonder and ruin."
-    },
+    "rooms": [
         {
-      "id": "Shield",
-      "description": "The power of the guardian. Kindess to aid friends. A shield to repel all."
-    }
-  ]
+            "id": "Awakening",
+            "description": "A place where inner power is awoken.",
+            "exits": {
+                "NORTH": "Battleground"
+            }
+        },
+        {
+            "id": "Battleground",
+            "description": "Darkness looms",
+            "exits": {
+                "NORTH": "Destati"
+                
+            } 
+        },
+        {
+            "id": "Destati",
+            "description": "",
+            "exist": {
+                "NORTH": "Traverse Town"   
+            }
+        },
+        {
+            "id": "Traverse Town",
+            "description": "",
+            "exists": {
+                
+            }
+        }
+        ],
+
+    "items": [
+        {
+            "id": "Sword",
+            "description": "The power of the warrior. Invincible courage. A sword of terrible destruction."
+        },
+        {
+            "id": "Staff",
+            "description": "The power of the mystic. Inner strength. A staff of wonder and ruin."
+        },
+        {
+            "id": "Shield",
+            "description": "The power of the guardian. Kindess to aid friends. A shield to repel all."
+        }
+    ]
 }

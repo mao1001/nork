@@ -41,6 +41,7 @@ commands.executeCommand(io, player, world, 'TAKE that which represents your stre
     console.log()
     console.log("A door materializes in front of you. It's arms openg slowly as an inviting warm light eminates from the inside.")
     commands.executeCommand(io, player, world, 'What do you want to do? ', ["NORTH"], function() {
+            console.log()
             commands.executeCommand(io, player, world
             )
     });     
