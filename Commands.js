@@ -71,7 +71,7 @@ function nextLocation(requestedDirection, player, world) {
     return currentLocation;
 }
 
-function executeTake(response,io, player, world, prompt, acceptableNouns, successCallback) {
+function executeTake(response, io, player, world, prompt, acceptableNouns, successCallback) {
     //First check to make sure there is a second word in the response to 'TAKE'
     if (response.length === 2) {
         var itemRequested = response[1].toUpperCase();
@@ -104,14 +104,26 @@ function executeTake(response,io, player, world, prompt, acceptableNouns, succes
     } else {
         //User did not specify something to 'TAKE'
         //OR user specified too much.
-        console.log("You didn't specify something to take.");
+        console.log("You didn't specify something to 'TAKE'.");
         console.log();
         executeCommand(io, player, world, prompt, acceptableNouns, successCallback);
     }
 }
 
-function executeUse() {
-    console.log("USING THINGS")
+function executeUse(response, io, player, world, prompt, acceptableNouns, successCallback) {
+    if (response.length === 2) {
+        if (acceptableNouns.indexOf(response[1].toUpperCase()) != -1) {
+            successCallback();
+        } else {
+            console.log("This isn't the time to use that item");
+            console.log();
+            executeCommand(io, player, world, prompt, acceptableNouns, successCallback);
+        }
+    } else {
+        console.log("You didn't specifiy something to 'USE'.");
+        console.log()
+        executeCommand(io, player, world, prompt, acceptableNouns, successCallback);
+    }
 }
 
 function executeInventory(response, io, player, world, prompt, acceptableNouns, successCallback) {
@@ -152,18 +164,11 @@ var executeCommand = function executeCommand(io, player, world, prompt, acceptab
             
             // console.log("---This is the command i'm attempting: " + command);
             if (command === "GO") {
-                //
                 executeGo(response, io, player, world, prompt, acceptableNouns, successCallback);
-                //
             } else if (command === "TAKE") {
-                //
                 executeTake(response, io, player, world, prompt, acceptableNouns, successCallback);
-                //
             } else if (command === "USE") {
-                //
-                executeUse();
-                successCallback();
-                //
+                executeUse(response, io, player, world, prompt, acceptableNouns, successCallback);
             } else if (command === "INVENTORY") {
                 executeInventory(response, player, world, prompt, acceptableNouns, successCallback);
             }
