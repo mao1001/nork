@@ -2,7 +2,7 @@
 var validCommands = ["GO", "TAKE", "USE", "INVENTORY"];
 var validDirections = ["NORTH", "EAST", "SOUTH", "WEST"];
 
-function executeGo(response, io, player, world, prompt, acceptableNouns, successCallback) {
+function executeGo(response, io, player, world, prompt, acceptableNouns, successCallback, failCallback) {
     //Makes sure that the user responded with a second word
     if (response.length === 2) {
         var direction = response[1].toUpperCase();
@@ -20,21 +20,21 @@ function executeGo(response, io, player, world, prompt, acceptableNouns, success
                 successCallback();
             } else {
                 //The user cannot move in that direction at this time.
-                console.log("You cannot go in that direction");
+                //console.log("You cannot go in that direction");
                 console.log();
-                executeCommand(io, player, world, prompt, acceptableNouns, successCallback);
+                failCallback();
             }
         } else {
             //The user entered a word that isn't a direction.
             console.log("That is not a valid direction");
             console.log();
-            executeCommand(io, player, world, prompt, acceptableNouns, successCallback);
+            executeCommand(io, player, world, prompt, acceptableNouns, successCallback, failCallback);
         }
     } else {
         //The user did not respond with anything more other than just the action word.
         console.log("You must pick a valid direction to go in.");
         console.log();
-        executeCommand(io, player, world, prompt, acceptableNouns, successCallback);
+        executeCommand(io, player, world, prompt, acceptableNouns, successCallback, failCallback);
     }
 }
 
@@ -71,7 +71,7 @@ function nextLocation(requestedDirection, player, world) {
     return currentLocation;
 }
 
-function executeTake(response, io, player, world, prompt, acceptableNouns, successCallback) {
+function executeTake(response, io, player, world, prompt, acceptableNouns, successCallback, failCallback) {
     //First check to make sure there is a second word in the response to 'TAKE'
     if (response.length === 2) {
         var itemRequested = response[1].toUpperCase();
@@ -99,34 +99,34 @@ function executeTake(response, io, player, world, prompt, acceptableNouns, succe
             //The user specified an item or word that is not on the list of valid items to take at this time.
             console.log("That is not a item you can take.");
             console.log();
-            executeCommand(io, player, world, prompt, acceptableNouns, successCallback);
+            executeCommand(io, player, world, prompt, acceptableNouns, successCallback, failCallback);
         }
     } else {
         //User did not specify something to 'TAKE'
         //OR user specified too much.
         console.log("You didn't specify something to 'TAKE'.");
         console.log();
-        executeCommand(io, player, world, prompt, acceptableNouns, successCallback);
+        executeCommand(io, player, world, prompt, acceptableNouns, successCallback, failCallback);
     }
 }
 
-function executeUse(response, io, player, world, prompt, acceptableNouns, successCallback) {
+function executeUse(response, io, player, world, prompt, acceptableNouns, successCallback, failCallback) {
     if (response.length === 2) {
         if (acceptableNouns.indexOf(response[1].toUpperCase()) != -1) {
             successCallback();
         } else {
             console.log("This isn't the time to use that item");
             console.log();
-            executeCommand(io, player, world, prompt, acceptableNouns, successCallback);
+            executeCommand(io, player, world, prompt, acceptableNouns, successCallback, failCallback);
         }
     } else {
         console.log("You didn't specifiy something to 'USE'.");
         console.log()
-        executeCommand(io, player, world, prompt, acceptableNouns, successCallback);
+        executeCommand(io, player, world, prompt, acceptableNouns, successCallback, failCallback);
     }
 }
 
-function executeInventory(response, io, player, world, prompt, acceptableNouns, successCallback) {
+function executeInventory(response, io, player, world, prompt, acceptableNouns, successCallback, failCallback) {
     //Checks that the response is only the action word.
     if (response.length === 1) {
         //Checks to make sure the player and it's inventory is initiated at this point.
@@ -142,17 +142,17 @@ function executeInventory(response, io, player, world, prompt, acceptableNouns, 
         } else {
             console.log("You have no inventory!")
         }
-        executeCommand(io, player, world, prompt, acceptableNouns, successCallback);
+        executeCommand(io, player, world, prompt, acceptableNouns, successCallback, failCallback);
     } else {
         //The user put in something in addition to the action word.
         console.log("The command INVENTORY is not an action. Enter INVENTORY by itself to check your INVENTORY.")
         console.log();
-        executeCommand(io, player, world, prompt, acceptableNouns, successCallback);
+        executeCommand(io, player, world, prompt, acceptableNouns, successCallback, failCallback);
     }
 
 }
 
-var executeCommand = function executeCommand(io, player, world, prompt, acceptableNouns, successCallback) {
+var executeCommand = function executeCommand(io, player, world, prompt, acceptableNouns, successCallback, failCallback) {
     io.question(prompt, function(answer) {
         var response = answer.trim().toUpperCase().split(" ");
         // console.log("---This is the response I got: " + response)
@@ -164,19 +164,19 @@ var executeCommand = function executeCommand(io, player, world, prompt, acceptab
             
             // console.log("---This is the command i'm attempting: " + command);
             if (command === "GO") {
-                executeGo(response, io, player, world, prompt, acceptableNouns, successCallback);
+                executeGo(response, io, player, world, prompt, acceptableNouns, successCallback, failCallback);
             } else if (command === "TAKE") {
-                executeTake(response, io, player, world, prompt, acceptableNouns, successCallback);
+                executeTake(response, io, player, world, prompt, acceptableNouns, successCallback, failCallback);
             } else if (command === "USE") {
-                executeUse(response, io, player, world, prompt, acceptableNouns, successCallback);
+                executeUse(response, io, player, world, prompt, acceptableNouns, successCallback, failCallback);
             } else if (command === "INVENTORY") {
-                executeInventory(response, player, world, prompt, acceptableNouns, successCallback);
+                executeInventory(response, player, world, prompt, acceptableNouns, successCallback, failCallback);
             }
             
         } else {
             console.log("This is not a valid command."); 
             console.log()
-            executeCommand(io, player, world, prompt, acceptableNouns, successCallback);               
+            executeCommand(io, player, world, prompt, acceptableNouns, successCallback, failCallback);               
         }
         
     });

@@ -69,8 +69,24 @@ commands.executeCommand(io, player, world, 'TAKE that which represents your stre
                 console.log("The man reaches out his hand.");
                 
                 io.close();
-            });
-        });
-    });     
-});
+            },
+            function(){
+                console.log("You take a wrong step and tumble in the abyss.");
+                console.log("There is no saving you from the darkness now.");
+                io.close();
+            }
+            );
+        },
+        function(){}
+        );
+    },
+    function(){
+        console.log("You take a wrong step and tumble in the abyss.");
+        console.log("There is no saving you from the darkness now.");
+        io.close();
+    }
+    );     
+},
+function(){}
+);
 
